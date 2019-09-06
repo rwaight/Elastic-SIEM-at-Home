@@ -1,0 +1,18 @@
+# Module: cisco
+# Docs: https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-module-cisco.html
+
+- module: cisco
+  asa:
+    var.syslog_host: 10.101.101.10 # IP of host receiving syslog traffic
+    var.syslog_port: 514 # Port used to receive syslog traffic from Cisco ASA
+    # Set which input to use between syslog (default) or file.
+    #var.input:
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+    # Set the log level from 1 (alerts only) to 7 (include all messages).
+    # Messages with a log level higher than the specified will be dropped.
+    # See https://www.cisco.com/c/en/us/td/docs/security/asa/syslog/b_syslog/syslogs-sev-level.html
+    var.log_level: 7
