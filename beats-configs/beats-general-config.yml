@@ -42,3 +42,15 @@ processors:
 # These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
+
+#============================= Queue ==================================
+# Settings to cache events to disk in case the system is offline
+queue.spool:
+  file:
+    size: 512MiB
+    page_size: 16KiB
+    prealloc: ~
+  write:
+    buffer_size: 10MiB
+    flush.timeout: 1s
+    flush.min.events: 1024
