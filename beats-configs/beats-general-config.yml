@@ -39,11 +39,12 @@ processors:
       target: ''
 
 #============================= Elastic Cloud ==================================
+
 # These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
 cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 cloud.auth: "data_shipper:0987654321abcDEF"
 
-#============================= Queue ==================================
+#================================= Queue ======================================
 # Settings to cache events to disk in case the system is offline
 queue.spool:
   file:
