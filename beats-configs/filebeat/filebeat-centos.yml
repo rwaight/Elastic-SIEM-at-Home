@@ -1,0 +1,18 @@
+###################### SIEM at Home - Filebeat CentOS Configuration Example #########################
+# This file is an example configuration file highlighting only the most common
+# options. The filebeat.reference.yml file from the same directory contains all the
+# supported options with more comments. You can use it as a reference.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+#=========================== Filebeat inputs =============================
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/boot.log
+    - /var/log/cron
+    - /var/log/dmesg
+    - /var/log/firewalld
+    - /var/log/secure
+    - /var/log/yum.log
