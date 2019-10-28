@@ -29,4 +29,4 @@ auditbeat.modules:
   datasets:
     - process
     #- socket # this is for Linux only as of 7.3
-  period: 1s
+  period: 1m
