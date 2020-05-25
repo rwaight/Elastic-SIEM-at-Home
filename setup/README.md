@@ -41,3 +41,30 @@ Reference: https://www.elastic.co/guide/en/elastic-stack-get-started/current/get
 
 ### Send Beats data to your cluster
 Reference: https://ela.st/siem-for-home
+
+#### Configure the GeoIP ingest pipeline
+Reference: https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-3-geoip-data-and-beats-config-review
+
+#### Install Beats on your local device
+We will follow the specific _Beats on Windows, CentOS, MacOS_ blog, with a few modifications to the _Beats Common Configurations_ file.
+* Beats Config: https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-3-geoip-data-and-beats-config-review
+* Windows: https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-4-beats-on-windows
+* CentOS: https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-5-beats-on-centos
+* macOS: https://www.elastic.co/blog/elastic-siem-for-small-business-and-home-6-beats-on-mac
+
+Instead of configuring the `Elastic Cloud` output, we will use the `Elasticsearch` output.
+
+From https://github.com/elastic/examples/blob/master/Security%20Analytics/SIEM-at-Home/beats-configs/beats-general-config.yml , we will modify the following section:
+```
+#=== Elastic Cloud ===
+# These settings simplify using beats with the Elastic Cloud (https://cloud.elastic.co/).
+cloud.id: "My_Elastic_Cloud_Deployment:abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+cloud.auth: "data_shipper:0987654321abcDEF"
+```
+
+Change to:
+```
+#=== Elasticsearch ===
+output.elasticsearch:
+  hosts: ["localhost"]
+```
