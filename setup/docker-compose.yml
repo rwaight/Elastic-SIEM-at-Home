@@ -1,0 +1,48 @@
+version: '2.2'
+
+# The volumes will be created within the directory where the `docker-compose` command is issued
+# To use Dockers default settings, remove the `./` from the `volumes` configuration options below
+
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - './es01_data:/usr/share/elasticsearch/data'
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.6.2
+    container_name: kib01
+    environment:
+      SERVER_PORT: 5601
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    volumes:      
+      - './kib01_data:/usr/share/kibana/data'
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
+    depends_on: ['es01']
+
+volumes:
+  data01:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
