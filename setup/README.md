@@ -38,3 +38,6 @@ Reference: https://www.elastic.co/guide/en/elastic-stack-get-started/current/get
 * Steps:
   * `PS C:\Users\myUser> cd C:\temp\learnElasticStack\`
   * `PS C:\temp\learnElasticStack> docker-compose up`
+
+### Send Beats data to your cluster
+Reference: https://ela.st/siem-for-home
